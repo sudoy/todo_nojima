@@ -69,3 +69,4 @@
 		</form>
 
 	</div><!-- /container -->
+ <jsp:include page="footer.jsp"/>

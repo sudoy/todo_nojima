@@ -49,5 +49,6 @@
 				<a href="entry.html" class="btn btn-primary" type="submit" ><span aria-hidden="true"></span> 追加</a>
 			</div>
 		</div>
-	</div><!-- /container -->
 
+	</div><!-- /container -->
+ <jsp:include page="footer.jsp"/>
