@@ -16,7 +16,7 @@ public class DBUtils {
 		//データベースの接続を確立
 		Context initContext = new InitialContext();
 		Context envContext  =(Context)initContext.lookup("java:/comp/env");
-		DataSource todolist_nojima = (DataSource)envContext.lookup("jdbc/mysql");
+		DataSource todolist_nojima = (DataSource)envContext.lookup("todolist_nojima");
 
 		return todolist_nojima.getConnection();
 

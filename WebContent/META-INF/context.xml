@@ -34,7 +34,7 @@
     -->
 
 
-    <Resource name="jdbc/mysql"
+    <Resource name="todolist_nojima"
     	auth="Container"
     	type="javax.sql.DataSource"
     	username="root"
