@@ -1,6 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8" %>
+<%@page import="java.sql.*, javax.naming.*, javax.sql.*, java.text.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <jsp:include page="header.jsp"/>
+<%
+	ResultSet rs = (ResultSet) request.getAttribute("rs");
 
+%>
 	<div class="container">
 		<div class="alert alert-success alert-dismissible" role="alert">
   				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -24,22 +30,24 @@
 		<tr>
 			<th>#</th><th>題名</th><th>重要度</th><th>期限</th>
 		</tr>
-		<tr>
 
-			<td>1</td><td><a href="update.html">テストテスト</a></td><td>★★★</td><td>2015/6/20</td>
-		</tr>
-		<tr>
+<%
 
-			<td>2</td><td><a href="update.html">テストテスト</a></td><td>★</td><td>2015/6/20</td>
-		</tr>
-		<tr>
+		while (rs.next()){
+%>
 
-			<td>3</td><td><a href="update.html">テストテスト</a></td><td>★★★</td><td>2015/6/20</td>
-		</tr>
-		<tr>
 
-			<td>4</td><td><a href="update.html">テストテスト</a></td><td>★★</td><td>2015/6/20</td>
+		<tr>
+			<td><%=rs.getString("id") %></td>
+			<td><a href="update.html"><%=rs.getString("title") %></a></td>
+			<td><%=rs.getString("imp") %></td>
+			<td><%=rs.getString("limit_date") %></td>
+
 		</tr>
+
+<%
+		}
+%>
 
 
 		</table>
