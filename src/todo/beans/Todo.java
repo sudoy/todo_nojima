@@ -9,15 +9,15 @@ public class Todo {
 	private String title;
 	private String detail;
 	private String imp;
-	private Date limit_date;
+	private Date limitDate;
 
-	public Todo(int id, String title,String detail, String imp, Date limit_date) {
+	public Todo(int id, String title,String detail, String imp, Date limitDate) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.detail = detail;
 		this.imp = imp;
-		this.limit_date = limit_date;
+		this.limitDate = limitDate;
 	}
 
 	public int getId() {
@@ -38,7 +38,6 @@ public class Todo {
 	}
 
 
-
 	public String getDetail() {
 		return detail;
 	}
@@ -55,13 +54,14 @@ public class Todo {
 		this.imp = imp;
 	}
 
-	public Date getLimit_date() {
-		return limit_date;
+	public Date getLimitDate() {
+		return limitDate;
 	}
 
-	public void setLimit_date(Date limit_date) {
-		this.limit_date = limit_date;
+	public void setLimitDate(Date limitDate) {
+		this.limitDate = limitDate;
 	}
+
 
 
 }

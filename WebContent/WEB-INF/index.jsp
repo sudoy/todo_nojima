@@ -35,7 +35,7 @@
 			<td>${todo.id}</td>
 			<td><a href="update.html">${todo.title}</a></td>
 			<td>${todo.imp}</td>
-			<td>${HTMLUtils.getFormat(todo.limit_date)}</td>
+			<td>${HTMLUtils.getFormat(todo.limitDate)}</td>
 
 		</tr>
 		</c:forEach>
