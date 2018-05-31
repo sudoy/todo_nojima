@@ -1,12 +1,9 @@
+<%@page import="todo.utils.HTMLUtils"%>
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@page import="java.sql.*, javax.naming.*, javax.sql.*, java.text.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- <jsp:include page="header.jsp"/>
-<%
-	ResultSet rs = (ResultSet) request.getAttribute("rs");
 
-%>
+ <jsp:include page="header.jsp"/>
+
 	<div class="container">
 		<div class="alert alert-success alert-dismissible" role="alert">
   				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -31,24 +28,17 @@
 			<th>#</th><th>題名</th><th>重要度</th><th>期限</th>
 		</tr>
 
-<%
-
-		while (rs.next()){
-%>
-
+		<c:forEach var="todo" items="${list}">
 
 		<tr>
-			<td><%=rs.getString("id") %></td>
-			<td><a href="update.html"><%=rs.getString("title") %></a></td>
-			<td><%=rs.getString("imp") %></td>
-			<td><%=rs.getString("limit_date") %></td>
+
+			<td>${todo.id}</td>
+			<td><a href="update.html">${todo.title}</a></td>
+			<td>${todo.imp}</td>
+			<td>${HTMLUtils.getFormat(todo.limit_date)}</td>
 
 		</tr>
-
-<%
-		}
-%>
-
+		</c:forEach>
 
 		</table>
 
