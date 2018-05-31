@@ -1,4 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
  <jsp:include page="header.jsp"/>
 
@@ -26,19 +28,19 @@
  			 </div>
 
 		</div>
-		<form class="form-horizontal" action="#" method="post">
+		<form class="form-horizontal" action="entry.html" method="post">
 
 			<div class="form-group">
-				<label for="salesDate" class="col-sm-2 control-label">題名</label>
+				<label for="salesDate" class="col-sm-2 control-label" >題名</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="salesDate" placeholder="題名" >
+				<input type="text" class="form-control" id="salesDate" name="title" placeholder="題名" value="">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">詳細 </label>
 				<div class="col-sm-10">
-				<textarea class="form-control" id="salesDate" placeholder="詳細" rows="3" ></textarea>
+				<textarea class="form-control" id="salesDate" placeholder="詳細" name="detail" rows="3" ></textarea>
 				</div>
 			</div>
 
@@ -46,16 +48,16 @@
 			<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">重要度 </label>
 				<div class="radio col-sm-5">
-    			<label><input type="radio" name="importance"  value="three" checked="checked">★★★</label><br>
-    			<label><input type="radio" name="importance"  value="two">★★</label><br>
-    			<label><input type="radio" name="importance"  value="one">★</label>
+    			<label><input type="radio" name="imp"  value="three" checked="checked" >★★★</label><br>
+    			<label><input type="radio" name="imp"  value="two" >★★</label><br>
+    			<label><input type="radio" name="imp"  value="one" >★</label>
     			</div>
 			</div>
 
     		<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">期限</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="salesDate" placeholder="期限" >
+				<input type="text" class="form-control" id="salesDate" name="limit_date" placeholder="期限" >
 				</div>
 			</div>
 
@@ -64,7 +66,7 @@
 				<label for="salesDate" class="col-sm-2 control-label"></label>
 				<div class="col-sm-10">
 				<a href="index.html" class="btn btn-default" type="submit" ><span  aria-hidden="true"></span> キャンセル</a>
-				<a href="index.html" class="btn btn-primary" type="submit" ><span  aria-hidden="true"></span> 追加</a>
+				<input class="btn btn-primary" type="submit" value="追加" />
 				</div>
 			</div>
 		</form>
