@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
@@ -18,6 +19,28 @@
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
+
+	<div class="container ">
+	<!--
+		<div class="alert alert-success alert-dismissible" role="alert">
+  				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 			 	<strong>完了しました!  </strong>
+ 			 	<ul>
+					<li>No.27のTodoを更新しました。</li>
+				</ul>
+		</div>
+	-->
+	<c:if test="${errors.size() > 0}">
+		<div class="alert alert-danger alert-dismissible" role="alert">
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 			<strong>エラーが発生しました！ </strong>
+ 			<ul>
+				<c:forEach var="error" items="${ errors}" >
+					<li>${error}</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 
 
 

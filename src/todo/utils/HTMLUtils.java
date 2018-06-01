@@ -13,6 +13,17 @@ public class HTMLUtils {
 		 return sdf.format(d);
 
 	}
+	public static String checkImportance(String param, String value) {
+		if(param.equals("") && value.equals("★★★")) {
+			return "checked";
+		}else if(param.equals(value)) {
+			return "checked";
+		}else {
+			return "";
+		}
+	}
+
+
 
 //	public static String getIntFormat(int i) {
 //		if(i == 1) {
@@ -27,6 +38,9 @@ public class HTMLUtils {
 //			return "";
 //		}
 //	}
+
+	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	//sdf.parse(req.getParameter("limit_date"));
 
 
 }
