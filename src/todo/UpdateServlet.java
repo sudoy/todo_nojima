@@ -56,7 +56,7 @@ public class UpdateServlet extends HttpServlet {
 
 
 		//JSPへフォワード
-		getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
+			getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
 			.forward(req, resp);
 
 		}catch(Exception e){

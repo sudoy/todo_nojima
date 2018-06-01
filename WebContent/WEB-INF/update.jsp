@@ -22,14 +22,14 @@
 				<input type="hidden" name="id" value="${list.id}"/>
 				<label for="salesDate" class="col-sm-2 control-label">題名</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="salesDate" value="${list.title}"  placeholder="テストテスト">
+				<input type="text" class="form-control" id="salesDate" value="${list.title}"  placeholder="題名">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">詳細 </label>
 				<div class="col-sm-10">
-				<textarea class="form-control" id="salesDate" rows="3"  placeholder="SQLの確認テストの採点と報告書を作成する" >${list.detail}</textarea>
+				<textarea class="form-control" id="salesDate" rows="3"  placeholder="詳細" >${list.detail}</textarea>
 				</div>
 			</div>
 
