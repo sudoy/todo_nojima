@@ -31,7 +31,7 @@
 			<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">重要度 </label>
 				<div class="radio col-sm-5">
-    			<label><input type="radio" name="imp"  value="★★"  ${HTMLUtils.checkImportance(parama.imp,'★★★') }>★★★</label><br>
+    			<label><input type="radio" name="imp"  value="★★★"  ${HTMLUtils.checkImportance(parama.imp,'★★★') }>★★★</label><br>
     			<label><input type="radio" name="imp"  value="★★" ${HTMLUtils.checkImportance(parama.imp,'★★') }>★★</label><br>
     			<label><input type="radio" name="imp"  value="★" ${HTMLUtils.checkImportance(parama.imp,'★') }>★</label>
     			</div>

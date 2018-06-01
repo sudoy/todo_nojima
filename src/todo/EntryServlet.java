@@ -63,16 +63,9 @@ public class EntryServlet extends HttpServlet {
 			ps.setString(1, req.getParameter("title"));
 			ps.setString(2, req.getParameter("detail"));
 			ps.setString(3, req.getParameter("imp"));
+			ps.setString(4, limitDate.equals("") ? null : limitDate);
 
 
-
-			if(req.getParameter("limit_date").equals("")) {
-				ps.setString(4, null);
-			}else {
-				ps.setString(4, req.getParameter("limit_date"));
-			}
-
-			//INSERT命令を実行
 			ps.executeUpdate();
 			resp.sendRedirect("index.html");
 
@@ -98,7 +91,7 @@ public class EntryServlet extends HttpServlet {
 		if(title.length() > 100) {
 			errors.add("題名は100文字以内にして下さい。");
 		}
-		if(limitDate.equals("")) {
+		if(!limitDate.equals("")) {
 			try {
 				LocalDate.parse(limitDate, DateTimeFormatter.ofPattern("uuuu/MM/dd")
 						.withResolverStyle(ResolverStyle.STRICT));
