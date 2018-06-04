@@ -6,7 +6,9 @@
   			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
  			<strong>完了しました!  </strong>
  			<ul>
-				<li>${successes}</li>
+				<c:forEach var="success" items="${successes}">
+					<li>${success}</li>
+				</c:forEach>
 			</ul>
 	</div>
 

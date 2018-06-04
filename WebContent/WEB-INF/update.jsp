@@ -10,13 +10,13 @@
  			 </div>
 
 		</div>
-		<form class="form-horizontal" action="update.html?id=${list.id}" method="post">
+		<form class="form-horizontal" action="update.html?id=${param.id != null ? param.id :list.id}" method="post">
 
 
 
 			<div class="form-group">
 
-				<input type="hidden" name="id" value="${list.id}"/>
+
 				<label for="salesDate" class="col-sm-2 control-label">題名</label>
 				<div class="col-sm-10">
 				<input type="text" name="title"  class="form-control" id="salesDate" value="${param.title != null ? param.title : list.title}"  placeholder="題名">
@@ -50,8 +50,8 @@
 				<label for="salesDate" class="col-sm-2 control-label"></label>
 				<div class="col-sm-10">
 				<a href="index.html" class="btn btn-default" type="submit" ><span  aria-hidden="true"></span> キャンセル</a>
-				<input type="submit" class="btn btn-primary" name="update" value="更新" />
-				<a class="col-sm-offset-9 btn btn-danger" href="delete.html?id=${list.id}l" type="submit"  ><span  aria-hidden="true"></span> 削除</a>
+				<button type="submit" class="btn btn-primary">更 新</button>
+				<a class="col-sm-offset-9 btn btn-danger" href="delete.html?id=${param.id != null ? param.id :list.id}" type="submit"  ><span  aria-hidden="true"></span> 削除</a>
 
 				</div>
 			</div>
