@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.utils.DBUtils;
+import todo.utils.User;
 
 @WebServlet("/login.html")
 public class LoginServlet extends HttpServlet {
@@ -26,14 +30,23 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
+
+		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		//バリデーションチェック
+		List<String> errors = validate(email,password);
+		if(errors.size() > 0) {
+			session.setAttribute("errors", errors);
+			getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
+			return;
+		}
 
 
 
 		//関連チェック
-
-		String email = req.getParameter("email");
-		String pw = req.getParameter("password");
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -42,20 +55,28 @@ public class LoginServlet extends HttpServlet {
 			//データベースの接続を確立
 			con = DBUtils.getConnection();
 			//GETパラメーターを取得
-			sql = "SELECT id from users where email = ? and password = ?";
+			sql = "SELECT id, email, password, name from users where email = ? and password = MD5(?)";
 			ps= con.prepareStatement(sql);
 			ps.setString(1, email);
-			ps.setString(2, pw);
+			ps.setString(2, password);
 			//SELCT命令を実行
 			rs=ps.executeQuery();
 
 			if(rs.next()) {
 				//email passwordが正しいとき
 				//ログイン処理
+				User user = new User(rs.getInt("id"),
+						rs.getString("email"),
+						rs.getString("password"),
+						rs.getString("name"));
+				session.setAttribute("user", user);
 				resp.sendRedirect("index.html");
+
+
 			}else {
-				getServletContext().getRequestDispatcher("/WEB-INF/login.jsp")
-				.forward(req, resp);
+				errors.add("メールアドレスかパスワードが間違っています。");
+				session.setAttribute("errors", errors);
+				getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 			}
 
 		}catch(Exception e){
@@ -72,38 +93,17 @@ public class LoginServlet extends HttpServlet {
 
 
 	}
-//	private List<String> validate(String id,String title, String limitDate, String importance) {
-//		List<String> errors = new ArrayList<>();
-//
-//		if(id == null || id.equals("")){
-//			errors.add("不正なアクセスです。");
-//
-//		}
-//
-//		if(title.equals("")){
-//			errors.add("題名は必須入力です。");
-//
-//		}
-//		if(title.length() > 100) {
-//			errors.add("題名は100文字以内にして下さい。");
-//		}
-//		if(!limitDate.equals("")) {
-//			try {
-//				LocalDate.parse(limitDate, DateTimeFormatter.ofPattern("uuuu/MM/dd")
-//						.withResolverStyle(ResolverStyle.STRICT));
-//
-//			}catch(Exception e) {
-//				errors.add("期限は「YYYY/MM/DD」形式で入力して下さい。");
-//			}
-//		}
-//
-//		if(!importance.equals("★") && !importance.equals("★★")
-//				&& !importance.equals("★★★")) {
-//			errors.add("これは不正なアクセスです。");
-//
-//		}
-//		return errors;
-//
-//	}
+	private List<String> validate(String email,String password) {
+		List<String> errors = new ArrayList<>();
+
+		if(email.equals("")) {
+			errors.add("メールアドレスは必須入力です");
+		}
+		if(password.equals("")) {
+			errors.add("パスワードは必須入力です。");
+		}
+		return errors;
+
+	}
 
 }

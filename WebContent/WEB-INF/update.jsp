@@ -2,7 +2,8 @@
 <%@page import="todo.utils.HTMLUtils"%>
 
  <jsp:include page="header.jsp"/>
-
+<jsp:include page="_successes.jsp" />
+<jsp:include page="_errors.jsp" />
 
 		<div >
   			<div class="panel-heading">

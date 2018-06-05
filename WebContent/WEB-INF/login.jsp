@@ -3,12 +3,13 @@
 
 		<div style="background-color: white">
 		<h4>ログイン</h4>
-
+		<jsp:include page="_successes.jsp" />
+		<jsp:include page="_errors.jsp" />
 		<form class="form-horizontal" action="#" method="post">
 			<div class="form-group">
 				<label for="salesDate" class="col-sm-2 control-label">メールアドレス </label>
 				<div class="col-sm-5">
-					<input type="text" name="mailaddress" class="form-control" id="mail" placeholder="メールアドレス" value="">
+					<input type="text" name="email" class="form-control" id="mail" placeholder="メールアドレス" value="">
 				</div>
 			</div>
 			<div class="form-group">

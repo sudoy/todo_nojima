@@ -1,7 +1,10 @@
 package todo.utils;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,18 +30,26 @@ public class HTMLUtils {
 		}
 	}
 
-	public static boolean checkLogin(HttpServletRequest req, HttpServletResponse resp) {
+	public static boolean checkLogin(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 		HttpSession session = req.getSession();
-//		if(session.getAttribute("login") == null) {
-//
-//			//ログインしていない
-//			List<String> errors = new ArrayList<>();
-//		}
-		return false;
+
+		//ログインチェック
+		if(session.getAttribute("user") == null) {
+			//ログインしていない
+			List<String> errors = new ArrayList<>();
+			errors.add("ログインして下さい。");
+			session.setAttribute("errors", errors);
+			resp.sendRedirect("login.html");
+			return false;
+
+		}else {
+			return true;
+		}
+
 	}
 
-
-
+}
 //	public static String getIntFormat(int i) {
 //		if(i == 1) {
 //			return "★";
@@ -57,4 +68,3 @@ public class HTMLUtils {
 	//sdf.parse(req.getParameter("limit_date"));
 
 
-}
