@@ -47,7 +47,7 @@ public class DeleteServlet extends HttpServlet {
 			ps = con.prepareStatement(sql);
 
 			//ポストデータをセット
-			ps.setString(1, req.getParameter("id"));
+			ps.setString(1, id);
 
 			//INSERT命令を実行
 			ps.executeUpdate();

@@ -26,6 +26,8 @@ public class UpdateServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -93,6 +95,7 @@ public class UpdateServlet extends HttpServlet {
 		String importance = req.getParameter("imp");
 		String limitDate = req.getParameter("limit_date");
 
+
 		List<String> errors =  validate(id,title, limitDate, importance);
 		if(errors.size() > 0) {
 			session.setAttribute("errors", errors);
@@ -108,7 +111,6 @@ public class UpdateServlet extends HttpServlet {
 			//データベースの接続を確立
 			con = DBUtils.getConnection();
 
-			req.getParameter("update") ;
 			sql = "UPDATE list SET title = ?, detail = ?, imp = ?, limit_date= ? WHERE id = ?";
 			//INSERT命令の準備
 			ps = con.prepareStatement(sql);
@@ -119,6 +121,7 @@ public class UpdateServlet extends HttpServlet {
 			ps.setString(3, req.getParameter("imp"));
 			ps.setString(4, limitDate.equals("") ? null : limitDate);
 			ps.setString(5, req.getParameter("id"));
+
 
 			//コマンドプロンプトで確認
 			//Sysout(ps);
